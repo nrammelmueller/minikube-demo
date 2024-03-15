@@ -35,8 +35,8 @@ metadata:
     nfs.io/storage-path: "postgresql-data"
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: standard
+    - ReadWriteOnce
+  storageClassName: local-path
   resources:
     requests:
       storage: 100Mi
@@ -82,9 +82,9 @@ spec:
               port: 5432
             initialDelaySeconds: 20
             periodSeconds: 5
-          livenessProbe:
-            tcpSocket:
-              port: 5432
+          #livenessProbe:
+           # tcpSocket:
+            #  port: 5432
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data
